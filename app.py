@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__, static_folder='static')
 @app.route("/", methods=["GET"])
 def home():
-    return "OK - app is running"
+    return send_from_directory("static", "index.html")
 # arxikopoiisi openrouter ai client
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 AI_ENABLED = bool(OPENROUTER_API_KEY)
@@ -29,11 +29,6 @@ else:
 #    init_database()
 #except Exception as e:
 #    print(f"i vasi exei idi arxikopoiithei i error: {e}")
-
-@app.route('/')
-def index():
-    # epistrofi kyrias selidas
-    return send_from_directory('static', 'index.html')
 
 @app.route('/api/restaurants', methods=['GET'])
 def parne_estiatoria():
