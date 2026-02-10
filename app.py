@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__, static_folder='static')
 @app.route("/", methods=["GET"])
 def home():
-    return send_from_directory("static", "index.html")
+    return send_from_directory(app.static_folder, "index.html")
 # arxikopoiisi openrouter ai client
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 AI_ENABLED = bool(OPENROUTER_API_KEY)
