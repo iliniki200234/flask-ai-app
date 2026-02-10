@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A(m)IHungry? - AI Food Delivery Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🍔 A(m)IHungry?</h1>
+                <p class="subtitle">AI-Powered Food Delivery Assistant</p>
+            </div>
+            <div class="stats-bar" id="statsBar">
+                <span class="stat-item">Loading stats...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- AI Chat Section -->
+            <section class="chat-section card">
+                <h2 class="section-title">💬 Ask AI Assistant</h2>
+                <div class="chat-description">
+                    Ρώτα τον AI πράκτορα σε φυσική γλώσσα! π.χ. "Ποια είναι η φθηνότερη πίτσα;" ή "Θέλω burger κάτω από 6 ευρώ"
+                </div>
+
+                <div class="chat-box" id="chatBox">
+                    <div class="chat-message ai-message">
+                        <strong>AI Agent:</strong> Γεια σου! Είμαι ο AI πράκτορας A(m)IHungry. Ρώτησέ με οτιδήποτε για φαγητό, τιμές, προσφορές και συγκρίσεις μεταξύ efood και wolt!
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <input
+                        type="text"
+                        id="chatInput"
+                        class="chat-input"
+                        placeholder="π.χ. Ποιο burger έχει καλύτερη τιμή στο efood vs wolt?"
+                        onkeypress="handleChatKeyPress(event)"
+                    >
+                    <button class="btn btn-primary" onclick="rotaAI()">Στείλε</button>
+                </div>
+                <div id="chatLoading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <span>AI σκέφτεται...</span>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="card">
+                    <h3>⚡ Γρήγορες Ενέργειες</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="showBestOffers()">
+                            🔥 Καλύτερες Προσφορές
+                        </button>
+                        <button class="btn btn-secondary" onclick="showAllProducts()">
+                            📋 Όλα τα Προϊόντα
+                        </button>
+                        <button class="btn btn-secondary" onclick="comparePlatforms()">
+                            🔄 Σύγκριση Πλατφορμών
+                        </button>
+                        <button class="btn btn-secondary" onclick="showRestaurants()">
+                            🏪 Εστιατόρια
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters Section -->
+            <section class="filters-section card">
+                <h2 class="section-title">🔍 Φίλτρα Αναζήτησης</h2>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Κατηγορία:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="">Όλες οι κατηγορίες</option>
+                            <option value="Burgers">Burgers</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Sandwiches">Sandwiches</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Salads">Salads</option>
+                            <option value="Sides">Sides</option>
+                            <option value="Desserts">Desserts</option>
+                            <option value="Beverages">Beverages</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Πλατφόρμα:</label>
+                        <select id="platformFilter" class="filter-select">
+                            <option value="">Όλες</option>
+                            <option value="efood">efood</option>
+                            <option value="wolt">wolt</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Μέγιστη Τιμή:</label>
+                        <input type="number" id="maxPriceFilter" class="filter-input" placeholder="π.χ. 10" step="0.5">
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Αναζήτηση:</label>
+                        <input type="text" id="searchFilter" class="filter-input" placeholder="Όνομα προϊόντος...">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="applyFilters()">Εφαρμογή Φίλτρων</button>
+                    <button class="btn btn-secondary" onclick="resetFilters()">Καθαρισμός</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section card" id="proteinomenaSection">
+                <h2 class="section-title" id="resultsTitle">📊 Αποτελέσματα</h2>
+                <div id="resultsContainer" class="results-container">
+                    <div class="empty-state">
+                        <p>Χρησιμοποίησε τα φίλτρα ή ρώτησε τον AI πράκτορα για να δεις αποτελέσματα!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>A(m)IHungry? - AI Food Delivery Assistant | Powered by Claude AI</p>
+            <p class="footer-note">Mock data για επίδειξη - Χωρίς web scraping</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
