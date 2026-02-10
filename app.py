@@ -9,7 +9,7 @@ from database import init_database, get_all_products, search_products, get_all_r
 load_dotenv()
 
 app = Flask(__name__, static_folder='static')
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     return "OK - app is running"
 # arxikopoiisi openrouter ai client
